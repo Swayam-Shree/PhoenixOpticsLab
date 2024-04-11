@@ -1,7 +1,7 @@
 "use client";
 
 import { signOut } from "firebase/auth";
-import { auth } from "./../firebase";
+import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import { useRouter } from "next/navigation";
@@ -15,8 +15,9 @@ export default function Dashboard() {
 	if (user) {
 		return (<div>
 			<div>
-				dashboard
+				dashboard, @app/dashboard/(auth)/page.js
 			</div>
+			
 			<Button onClick={() => {signOut(auth);}} variant="outlined">Sign Out</Button>
 		</div>)
 	} else if (authLoading) {
