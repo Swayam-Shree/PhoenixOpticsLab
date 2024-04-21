@@ -15,9 +15,10 @@ export default function Dashboard() {
 	if (user) {
 		return (<div>
 			<div>
-				dashboard, @app/dashboard/(auth)/page.js
+				dashboard, @app/(auth)/dashboard/page.js
 			</div>
 			
+			<Button onClick={() => {router.push("/createBlog");}} variant="outlined">Create Blog</Button>
 			<Button onClick={() => {signOut(auth);}} variant="outlined">Sign Out</Button>
 		</div>)
 	} else if (authLoading) {
