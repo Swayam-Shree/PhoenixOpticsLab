@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
 						<Link href="/about">About us</Link>
 						<Link href="/projects">Projects</Link>
 						<Link href="/projects">Equipments</Link>
-						<Link href="/projects">Publications</Link>
+						<Link href="/blogs">Blogs</Link>
 						<Link href="/projects">Members</Link>
 					</div>
 					<div className="bg-white text-navbar-blue px-[24px] py-[8px] rounded-full">
@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
 							<p className="mb-[1em] text-xl">Important Links</p>
 							<div className="flex flex-col">
 								<Link href="">Equipments</Link>
-								<Link href="">Publications</Link>
+								<Link href="/blogs">Blogs</Link>
 								<Link href="">Projects</Link>
 								<Link href="">Members</Link>
 							</div>
