@@ -45,10 +45,10 @@ export default function RootLayout({ children }) {
 						<div>
 							<p className="mb-[1em] text-xl">Important Links</p>
 							<div className="flex flex-col">
-								<Link href="">Equipments</Link>
+								<Link href="/equipments">Equipments</Link>
 								<Link href="/blogs">Blogs</Link>
-								<Link href="">Projects</Link>
-								<Link href="">Members</Link>
+								<Link href="/researchareas">Projects</Link>
+								<Link href="/collaborators">Members</Link>
 							</div>
 						</div>
 						<div>
