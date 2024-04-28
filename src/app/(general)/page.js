@@ -13,9 +13,21 @@ import ImageButton from "@/components/ImageButton";
 import BlogCard from "@/components/BlogCard";
 import TextCard2Liner from "@/components/TextCard2Liner";
 
+import { collection } from "firebase/firestore";
+import { db } from "@/app/firebase";
+import { useCollection } from "react-firebase-hooks/firestore" ;
+
 export default function Home() {
 	const router = useRouter();
 	const [user, authLoading, authError] = useAuthState(auth);
+
+	const [blogValues, blogLoading, blogError] = useCollection(collection(db, "blogs"));
+	const blogData = [];
+	if (blogValues) {
+		for (let i = 0; i < Math.min(blogValues.docs.length, 4); ++i) {
+			blogData.push([blogValues.docs[i].id, blogValues.docs[i].data()]);
+		}
+	}
 
 	if (user) {
 		router.push("/dashboard");
@@ -110,36 +122,52 @@ export default function Home() {
 				<p className="text-[#1F2B6C] font-bold text-3xl">BLOGS</p>
 			</div>
 
-			<div className="m-[8em] grid grid-rows-2 grid-cols-2 gap-[3em]">
-				<BlogCard
-					src="/project.jpeg"
-					author="John Doe"
-					title="This Article's Title goes Here, but not too long."
-					viewCount={69}
-					date="12th August 2021"
-				/>
-				<BlogCard
-					src="/dummy1.jpeg"
-					author="John Doe"
-					title="This Article's Title goes Here, but not too long."
-					viewCount={69}
-					date="12th August 2021"
-				/>
-				<BlogCard
-					src="/dummy1.jpeg"
-					author="John Doe"
-					title="This Article's Title goes Here, but not too long."
-					viewCount={69}
-					date="12th August 2021"
-				/>
-				<BlogCard
-					src="/project.jpeg"
-					author="John Doe"
-					title="This Article's Title goes Here, but not too long."
-					viewCount={69}
-					date="12th August 2021"
-				/>
-			</div>
+			{
+				blogData.length > 0 &&
+			
+				<div className="m-[8em] grid grid-rows-2 grid-cols-2 gap-[3em]">
+					{ 
+						blogData[0] &&
+						<BlogCard
+							src="/project.jpeg"
+							author={blogData[0][1].author}
+							title={blogData[0][1].title}
+							date={blogData[0][1].date}
+							id={blogData[0][0]}
+						/>
+					}
+					{ 
+						blogData[1] &&
+						<BlogCard
+							src="/dummy1.jpeg"
+							author={blogData[1][1].author}
+							title={blogData[1][1].title}
+							date={blogData[1][1].date}
+							id={blogData[1][0]}
+						/>
+					}
+					{ 
+						blogData[2] &&
+						<BlogCard
+							src="/dummy1.jpeg"
+							author={blogData[2][1].author}
+							title={blogData[2][1].title}
+							date={blogData[2][1].date}
+							id={blogData[2][0]}
+						/>
+					}
+					{ 
+						blogData[3] &&
+						<BlogCard
+							src="/project.jpeg"
+							author={blogData[3][1].author}
+							title={blogData[3][1].title}
+							date={blogData[3][1].date}
+							id={blogData[3][0]}
+						/>
+					}
+				</div>
+			}
 
 			<div className="flex flex-col items-center gap-[4px]">
 				<p className="text-[#159EEC] font-bold text-xl">GET IN TOUCH</p>

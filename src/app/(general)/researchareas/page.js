@@ -1,25 +1,26 @@
 "use client";
 
-import { auth } from '../../firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { collection } from "firebase/firestore";
+import { db } from "@/app/firebase";
+import { useCollection } from "react-firebase-hooks/firestore" ;
 
-import { useRouter } from 'next/navigation';
+import TwoDataDisplay from "@/components/TwoDataDisplay";
 
-export default function Login() {
-	const router = useRouter();
-	const [user, authLoading, authError] = useAuthState(auth);
-
-	if (user) {
-		router.push('/dashboard');
-	} else if (authLoading) {
+export default function Blogs() {
+	const [value, loading, error] = useCollection(collection(db, "researchareas"));
+	if (loading) {
 		return (<div>Loading...</div>);
-	} else if (authError) {
-		return (<div>Error</div>);
-	} else {
-		return (<div className='flex flex-col items-center'>
-			<div>
-				project areas page, @app/(general)/researchareas/page.js
-			</div>
-		</div>);
+	} else if (error) {
+		return (<div>Error. Please refresh.</div>);
 	}
+
+	let data = value.docs.map(doc => doc.data());
+
+	let jsx = data.map((val) => {
+		return <TwoDataDisplay title={val.title} content={val.details} />
+	});
+
+	return (<div className="flex flex-col">
+		{ jsx }
+	</div>);
 }

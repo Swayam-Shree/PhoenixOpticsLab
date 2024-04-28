@@ -12,31 +12,29 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
 
-let blogCollection = collection(db, "blogs");
+let researchAreasCollection = collection(db, "researchareas");
 
 export default function Dashboard() {
 	const router = useRouter();
 	const [user, authLoading, authError] = useAuthState(auth);
 
 	const [title, setTitle] = useState("");
-	const [content, setContent] = useState("");
+	const [details, setDetails] = useState("");
 
 	const [uploading, setUploading] = useState(false);
 
 	async function handleSubmit() {
 		setUploading(true);
 
-		await addDoc(blogCollection, {
+		await addDoc(researchAreasCollection, {
 			title: title,
-			content: content,
-			author: user.displayName,
-			date: new Date().toISOString().slice(0, 10)
+			details: details,
 		});
 
 		setUploading(false);
 
 		setTitle("");
-		setContent("");
+		setDetails("");
 	}
 
 	if (user) {
@@ -47,9 +45,9 @@ export default function Dashboard() {
 			<Button onClick={() => {router.push("/dashboard");}} variant="outlined">Dashboard</Button>
 
 			<TextField onChange={(e) => {setTitle(e.target.value);}} value={title} label="Title" variant="outlined" />
-			<TextField onChange={(e) => {setContent(e.target.value);}} value={content}  multiline label="Content" variant="outlined" />
+			<TextField onChange={(e) => {setDetails(e.target.value);}} value={details}  multiline label="Details" variant="outlined" />
 
-			<Button onClick={handleSubmit} variant="outlined">Create Blog</Button>
+			<Button onClick={handleSubmit} variant="outlined">Create Research Area</Button>
 
 			{uploading && <CircularProgress />}
 		</div>)

@@ -20,6 +20,7 @@ export default function Login() {
 
 	if (user) {
 		router.push('/dashboard');
+		return (<div>Redirecting...</div>);
 	} else if (authLoading) {
 		return (<div>Loading...</div>);
 	} else if (authError) {

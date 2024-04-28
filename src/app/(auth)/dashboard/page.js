@@ -19,6 +19,10 @@ export default function Dashboard() {
 			</div>
 			
 			<Button onClick={() => {router.push("/createBlog");}} variant="outlined">Create Blog</Button>
+			<Button onClick={() => {router.push("/createEquipment");}} variant="outlined">Create Equipment</Button>
+			<Button onClick={() => {router.push("/createCollaborator");}} variant="outlined">Create Collaborator</Button>
+			<Button onClick={() => {router.push("/createPublication");}} variant="outlined">Create Publication</Button>
+			<Button onClick={() => {router.push("/createResearchareas");}} variant="outlined">Create Research Area</Button>
 			<Button onClick={() => {signOut(auth);}} variant="outlined">Sign Out</Button>
 		</div>)
 	} else if (authLoading) {

@@ -23,11 +23,11 @@ export default function RootLayout({ children }) {
 					<p className="text-[32px] ">OPTICAL</p>
 					<div className="flex gap-[15px] justify-between">
 						<Link href="/">Home</Link>
-						<Link href="/about">About us</Link>
-						<Link href="/projects">Projects</Link>
-						<Link href="/projects">Equipments</Link>
 						<Link href="/blogs">Blogs</Link>
-						<Link href="/projects">Members</Link>
+						<Link href="/collaborators">Collaborators</Link>
+						<Link href="/researchareas">Research Areas</Link>
+						<Link href="/publications">Publications</Link>
+						<Link href="/equipments">Equipments</Link>
 					</div>
 					<div className="bg-white text-navbar-blue px-[24px] py-[8px] rounded-full">
 						Contact us
